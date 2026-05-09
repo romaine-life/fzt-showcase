@@ -167,6 +167,8 @@ function buildCommandHistory() {
       { text: "GitHub", href: "https://github.com/nelsong6/fzt" },
       { text: "Source", href: "https://github.com/nelsong6/fzt-showcase" },
       { text: "YAML", id: "btn-toggle-yaml" },
+      { text: "A+", id: "btn-font-up" },
+      { text: "A-", id: "btn-font-down" },
     ]},
     { cmd: "fzt.exe" },
   ];
@@ -284,6 +286,17 @@ async function init() {
   document.getElementById("btn-apply").addEventListener("click", () => {
     applyYAML();
   });
+
+  document.getElementById("btn-font-up").addEventListener("click", () => adjustFontSize(1));
+  document.getElementById("btn-font-down").addEventListener("click", () => adjustFontSize(-1));
+}
+
+function adjustFontSize(delta) {
+  const root = document.documentElement;
+  const current = parseFloat(getComputedStyle(root).getPropertyValue("--font-size-base")) || 16;
+  const next = Math.min(32, Math.max(10, current + delta));
+  root.style.setProperty("--font-size-base", next + "px");
+  window.dispatchEvent(new Event("resize"));
 }
 
 function applyYAML() {

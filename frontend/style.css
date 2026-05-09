@@ -32,6 +32,7 @@
   --accent: #33ff33;
   --glow: #33ff33;
   --terminal-font: "Perfect DOS VGA 437", "Cascadia Code", "JetBrains Mono", "Fira Code", "SF Mono", "Consolas", "Symbols Nerd Font Mono", monospace;
+  --font-size-base: 16px;
 
   /* Override shared fzt-terminal.css variables */
   --fzt-bg: var(--bg-panel);
@@ -49,7 +50,7 @@ body.ambience-on {
 
 body {
   font-family: var(--terminal-font);
-  font-size: 16px;
+  font-size: var(--font-size-base);
   line-height: 1.4;
   background: var(--bg);
   color: var(--fg);
@@ -222,7 +223,7 @@ body {
   border: none;
   padding: 12px;
   font-family: var(--terminal-font);
-  font-size: 13px;
+  font-size: var(--font-size-base);
   line-height: 1.6;
   resize: none;
   outline: none;
