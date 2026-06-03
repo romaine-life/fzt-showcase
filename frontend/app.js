@@ -164,8 +164,8 @@ function buildCommandHistory() {
   const history = [
     { cmd: "type README.TXT", output: "fzt \u2014 A {fuzzy finder}(https://github.com/junegunn/fzf) with hierarchical navigation.\nType to search, arrow keys to navigate, Enter to drill in or open." },
     { cmd: "dir /B *.LNK", links: [
-      { text: "GitHub", href: "https://github.com/nelsong6/fzt" },
-      { text: "Source", href: "https://github.com/nelsong6/fzt-showcase" },
+      { text: "GitHub", href: "https://github.com/romaine-life/fzt" },
+      { text: "Source", href: "https://github.com/romaine-life/fzt-showcase" },
       { text: "YAML", id: "btn-toggle-yaml" },
     ]},
     { cmd: "fzt.exe" },
