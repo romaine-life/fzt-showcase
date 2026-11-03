@@ -1,0 +1,122 @@
+name: Deploy Showcase
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      release:
+        description: Publish the next v0.1 release after deployment
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: showcase-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  deploy:
+    name: Build and Deploy
+    runs-on: [ubuntu-latest, upstairspc-linux]
+    enable-openid-connect: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: https://github.com/actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download Forgejo browser release
+        id: browser
+        env:
+          TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}
+        run: |
+          set -euo pipefail
+          authcurl() { printf 'header = "Authorization: token %s"\n' "$TOKEN" | curl -K - "$@"; }
+          api="${{ github.server_url }}/api/v1/repos/romaine-life/fzt-browser"
+          authcurl -fsS "$api/releases/latest" > browser-release.json
+          version=$(jq -er .tag_name browser-release.json)
+          for asset in fzt.wasm fzt-terminal.js fzt-terminal.css fzt-web.js; do
+            url=$(jq -er --arg name "$asset" '.assets[] | select(.name == $name) | .browser_download_url' browser-release.json)
+            authcurl -fLSs "$url" -o "frontend/$asset"
+          done
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          jq -n --arg v "$version" --arg sha "$(git rev-parse --short=7 HEAD)" --arg date "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            '{fztBrowser:$v,sha:$sha,deployedAt:$date}' > frontend/version.json
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
+      - name: Install Azure CLI
+        run: |
+          set -euo pipefail
+          if ! command -v az >/dev/null 2>&1; then
+            curl -fsSL https://aka.ms/InstallAzureCLIDeb | sudo bash
+          fi
+          az version
+      - name: Azure Login via Forgejo OIDC
+        uses: https://github.com/azure/login@v2
+        with:
+          client-id: ${{ vars.ARM_CLIENT_ID }}
+          tenant-id: ${{ vars.ARM_TENANT_ID }}
+          subscription-id: ${{ vars.ARM_SUBSCRIPTION_ID }}
+      - name: Get deployment token
+        if: github.event_name != 'pull_request'
+        id: token
+        run: |
+          token=$(az staticwebapp secrets list --name fuzzy-tiers-showcase-app --resource-group fuzzy-tiers-showcase-rg --query properties.apiKey -o tsv)
+          echo "::add-mask::$token"
+          echo "value=$token" >> "$GITHUB_OUTPUT"
+      - name: Deploy Static Web App
+        if: github.event_name != 'pull_request'
+        uses: https://github.com/Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ steps.token.outputs.value }}
+          action: upload
+          app_location: frontend/dist
+          output_location: ''
+          skip_app_build: true
+      - name: Verify deployed commit and browser version
+        if: github.event_name != 'pull_request'
+        env:
+          VERSION: ${{ steps.browser.outputs.version }}
+        run: |
+          set -euo pipefail
+          sha=$(git rev-parse --short=7 HEAD)
+          for i in $(seq 1 60); do
+            if curl -fsS "https://fzt.romaine.life/version.json?commit=$sha" | jq -e --arg v "$VERSION" --arg sha "$sha" '.fztBrowser==$v and .sha==$sha'; then exit 0; fi
+            sleep 5
+          done
+          echo 'Deployed version did not become live'; exit 1
+      - name: Publish site bundle on Forgejo
+        if: github.event_name == 'workflow_dispatch' && inputs.release
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          api="${{ github.server_url }}/api/v1/repos/${{ github.repository }}"
+          sha=$(git rev-parse HEAD)
+          tag=$(git tag --points-at HEAD -l 'v0.1.*' --sort=-v:refname | head -1)
+          if [ -z "$tag" ]; then
+            latest=$(git tag -l 'v0.1.*' --sort=-v:refname | head -1)
+            if [ -z "$latest" ]; then tag=v0.1.0; else tag="v0.1.$(( ${latest##*.} + 1 ))"; fi
+            jq -n --arg tag "$tag" --arg sha "$sha" '{tag_name:$tag,target:$sha}' > tag.json
+            printf 'header = "Authorization: token %s"\n' "$TOKEN" | curl -K - -fsS -X POST -H 'Content-Type: application/json' --data-binary @tag.json "$api/tags" > /dev/null
+          fi
+          code=$(printf 'header = "Authorization: token %s"\n' "$TOKEN" | curl -K - -sS -o existing.json -w '%{http_code}' "$api/releases/tags/$tag")
+          if [ "$code" = 404 ]; then
+            jq -n --arg tag "$tag" --arg sha "$sha" '{tag_name:$tag,target_commitish:$sha,name:$tag,body:"Showcase deployed from Forgejo",draft:true}' > release.json
+            printf 'header = "Authorization: token %s"\n' "$TOKEN" | curl -K - -fsS -X POST -H 'Content-Type: application/json' --data-binary @release.json "$api/releases" > existing.json
+          elif [ "$code" != 200 ]; then echo "Release lookup returned $code"; exit 1; fi
+          id=$(jq -er .id existing.json)
+          if ! jq -e '.draft' existing.json > /dev/null; then
+            jq -e '.assets[] | select(.name=="fzt-showcase.zip")' existing.json > /dev/null
+            echo "$tag is already published"; exit 0
+          fi
+          (cd frontend/dist && zip -qr ../../fzt-showcase.zip .)
+          old=$(jq -r '.assets[] | select(.name=="fzt-showcase.zip") | .id' existing.json)
+          if [ -n "$old" ]; then
+            printf 'header = "Authorization: token %s"\n' "$TOKEN" | curl -K - -fsS -X DELETE "$api/releases/$id/assets/$old" > /dev/null
+          fi
+          printf 'header = "Authorization: token %s"\n' "$TOKEN" | curl -K - -fsS -X POST -F attachment=@fzt-showcase.zip "$api/releases/$id/assets?name=fzt-showcase.zip" > /dev/null
+          printf 'header = "Authorization: token %s"\n' "$TOKEN" | curl -K - -fsS -X PATCH -H 'Content-Type: application/json' -d '{"draft":false}' "$api/releases/$id" > /dev/null
+          printf 'header = "Authorization: token %s"\n' "$TOKEN" | curl -K - -fsS "$api/tags/$tag" | jq -e --arg sha "$sha" '.commit.sha==$sha'

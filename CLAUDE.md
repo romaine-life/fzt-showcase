@@ -32,8 +32,8 @@ cd frontend && npm ci && npm run build
 
 ## Relationship to my-homepage
 
-Both consume fzt-browser's WASM binary and JS/CSS assets. The showcase is a standalone demo (no auth, no backend, hardcoded bookmarks in command history); my-homepage is a full bookmark manager with auth, API, blob storage, and the ref system. A new fzt-browser release does not auto-redeploy either consumer - retrigger manually (`gh workflow run deploy.yml -R romaine-life/fzt-showcase`) to pick up fresh assets. The showcase will eventually be absorbed into my-homepage.
+Both consume fzt-browser's WASM binary and JS/CSS assets. The showcase is a standalone demo (no auth, no backend, hardcoded bookmarks in command history); my-homepage is a full bookmark manager with auth, API, blob storage, and the ref system. A new fzt-browser release does not auto-redeploy either consumer - retrigger manually (`Invoke-RestMethod -Method Post -Uri https://forgejo.romaine.life/api/v1/repos/romaine-life/fzt-showcase/actions/workflows/deploy.yml/dispatches -Headers @{Authorization="token $env:FORGEJO_TOKEN"} -ContentType application/json -Body '{"ref":"main"}'`) to pick up fresh assets. The showcase will eventually be absorbed into my-homepage.
 
 ## Deployment
 
-Azure Static Web App via GitHub Actions. CI downloads the latest `fzt-browser` assets, runs `npm run build` in `frontend/`, then deploys `frontend/dist/`.
+Azure Static Web App via Forgejo Actions. CI downloads the latest `fzt-browser` assets, runs `npm run build` in `frontend/`, then deploys `frontend/dist/`.

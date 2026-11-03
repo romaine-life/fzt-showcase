@@ -1,0 +1,77 @@
+name: Infrastructure
+on:
+  pull_request:
+    paths: ['tofu/**', '.forgejo/workflows/tofu.yml']
+  push:
+    branches: [main]
+    paths: ['tofu/**', '.forgejo/workflows/tofu.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  pull-requests: write
+  id-token: write
+
+concurrency:
+  group: showcase-tofu
+  cancel-in-progress: false
+jobs:
+  tofu:
+    name: Plan and apply
+    runs-on: ubuntu-latest
+    enable-openid-connect: true
+    env:
+      ARM_USE_OIDC: 'true'
+      ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
+      ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ vars.ARM_SUBSCRIPTION_ID }}
+    defaults:
+      run:
+        working-directory: tofu
+    steps:
+      - uses: actions/checkout@v4
+      - uses: https://github.com/opentofu/setup-opentofu@v1
+        with:
+          tofu_version: '1.9.0'
+          tofu_wrapper: false
+      - name: Install Azure CLI
+        run: |
+          set -euo pipefail
+          if ! command -v az >/dev/null 2>&1; then
+            curl -fsSL https://aka.ms/InstallAzureCLIDeb | sudo bash
+          fi
+          az version
+      - uses: https://github.com/azure/login@v2
+        with:
+          client-id: ${{ vars.ARM_CLIENT_ID }}
+          tenant-id: ${{ vars.ARM_TENANT_ID }}
+          subscription-id: ${{ vars.ARM_SUBSCRIPTION_ID }}
+      - name: Shared providers from Forgejo
+        env:
+          TOKEN: ${{ secrets.PIPELINE_DISPATCH_TOKEN }}
+        run: |
+          authcurl() { printf 'header = "Authorization: token %s"\n' "$TOKEN" | curl -K - "$@"; }
+          api=https://forgejo.romaine.life/api/v1/repos/romaine-life/infra-bootstrap/raw/tofu/provider
+          authcurl -fLSs -o shared-providers.tf "$api/shared-providers.tf?ref=main"
+          authcurl -fLSs -o .terraform.lock.hcl "$api/.terraform.lock.hcl?ref=main"
+      - name: Initialize
+        run: tofu init -backend-config=resource_group_name=infra -backend-config=storage_account_name=${{ vars.TFSTATE_STORAGE_ACCOUNT }} -backend-config=container_name=tfstate -backend-config=key=fuzzy-tiers-showcase.tfstate
+      - name: Plan
+        run: |
+          set -euo pipefail
+          tofu validate
+          tofu plan -no-color -out=tfplan | tee plan.txt
+          tofu show -json tfplan | jq '[.resource_changes[]? | select(.change.actions != ["no-op"] or .change.importing)] | length' > changes.json
+      - name: Post plan to PR
+        if: github.event_name == 'pull_request'
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          jq -n --rawfile plan plan.txt '{body:("OpenTofu plan:\n\n" + $plan[:60000])}' > comment.json
+          printf 'header = "Authorization: token %s"\n' "$TOKEN" | curl -K - -fsS -X POST -H 'Content-Type: application/json' --data-binary @comment.json "${{ github.server_url }}/api/v1/repos/${{ github.repository }}/issues/$PR/comments" > /dev/null
+      - name: Apply saved plan
+        if: github.event_name != 'pull_request'
+        run: |
+          set -euo pipefail
+          if [ "$(cat changes.json)" -gt 0 ]; then tofu apply -auto-approve tfplan; fi
