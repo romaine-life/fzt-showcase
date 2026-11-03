@@ -1,6 +1,6 @@
 # fzt-showcase
 
-Interactive web demo of [fzt](https://github.com/romaine-life/fzt-terminal) (fuzzy hierarchical finder). Runs the actual Go scoring engine via WASM in the browser.
+Interactive web demo of [fzt](https://forgejo.romaine.life/romaine-life/fzt-terminal) (fuzzy hierarchical finder). Runs the actual Go scoring engine via WASM in the browser.
 
 No auth. Frontend-only (no backend, no database). Will eventually be absorbed into my-homepage.
 
