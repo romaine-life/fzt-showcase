@@ -1,0 +1,14 @@
+[
+  {
+    "additions": 1,
+    "blob_url": "https://github.com/romaine-life/fzt-showcase/blob/db9e18fd78086a6409b1745f83ec210690d39112/.github%2Fworkflows%2Fauto-merge-dependabot.yml",
+    "changes": 2,
+    "contents_url": "https://api.github.com/repos/romaine-life/fzt-showcase/contents/.github%2Fworkflows%2Fauto-merge-dependabot.yml?ref=db9e18fd78086a6409b1745f83ec210690d39112",
+    "deletions": 1,
+    "filename": ".github/workflows/auto-merge-dependabot.yml",
+    "patch": "@@ -24,7 +24,7 @@ jobs:\n       # that key is ever rotated.\n       - name: Mint app token\n         id: app-token\n-        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2\n+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0\n         with:\n           app-id: 3942172 # infra-bootstrap-github-app\n           private-key: ${{ secrets.AUTOMERGE_APP_PRIVATE_KEY }}",
+    "raw_url": "https://github.com/romaine-life/fzt-showcase/raw/db9e18fd78086a6409b1745f83ec210690d39112/.github%2Fworkflows%2Fauto-merge-dependabot.yml",
+    "sha": "45cba79036c5d64518f448928733007b9043bad1",
+    "status": "modified"
+  }
+]

@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/deploy.yml b/.github/workflows/deploy.yml
+index d085cf9..c8aa619 100644
+--- a/.github/workflows/deploy.yml
++++ b/.github/workflows/deploy.yml
+@@ -21,7 +21,7 @@ jobs:
+       uses: actions/checkout@v6
+ 
+     - name: Setup Node.js
+-      uses: actions/setup-node@v4
++      uses: actions/setup-node@v6
+       with:
+         node-version: 22
+ 

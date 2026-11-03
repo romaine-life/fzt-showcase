@@ -1,0 +1,14 @@
+[
+  {
+    "additions": 1,
+    "blob_url": "https://github.com/romaine-life/fzt-showcase/blob/832bf4a22760a71eb47fd7d714949a31e95e63ad/.github%2Fworkflows%2Fdeploy.yml",
+    "changes": 2,
+    "contents_url": "https://api.github.com/repos/romaine-life/fzt-showcase/contents/.github%2Fworkflows%2Fdeploy.yml?ref=832bf4a22760a71eb47fd7d714949a31e95e63ad",
+    "deletions": 1,
+    "filename": ".github/workflows/deploy.yml",
+    "patch": "@@ -18,7 +18,7 @@ jobs:\n \n     steps:\n     - name: Checkout code\n-      uses: actions/checkout@v6\n+      uses: actions/checkout@v7\n \n     - name: Setup Node.js\n       uses: actions/setup-node@v6",
+    "raw_url": "https://github.com/romaine-life/fzt-showcase/raw/832bf4a22760a71eb47fd7d714949a31e95e63ad/.github%2Fworkflows%2Fdeploy.yml",
+    "sha": "1c42f2c81dd9775fcebc6bef6a913d3dc271b8e2",
+    "status": "modified"
+  }
+]

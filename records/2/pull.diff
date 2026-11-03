@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/deploy.yml b/.github/workflows/deploy.yml
+index d7b1f8d..16175ea 100644
+--- a/.github/workflows/deploy.yml
++++ b/.github/workflows/deploy.yml
+@@ -20,7 +20,7 @@ jobs:
+ 
+     steps:
+     - name: Checkout code
+-      uses: actions/checkout@v4
++      uses: actions/checkout@v6
+ 
+     - name: Download fzt assets from latest release
+       env:

@@ -1,0 +1,14 @@
+[
+  {
+    "additions": 1,
+    "blob_url": "https://github.com/romaine-life/fzt-showcase/blob/22cc7832f70bd1b92d7aa95c320ce9d00eb01975/.github%2Fworkflows%2Fdeploy.yml",
+    "changes": 2,
+    "contents_url": "https://api.github.com/repos/romaine-life/fzt-showcase/contents/.github%2Fworkflows%2Fdeploy.yml?ref=22cc7832f70bd1b92d7aa95c320ce9d00eb01975",
+    "deletions": 1,
+    "filename": ".github/workflows/deploy.yml",
+    "patch": "@@ -20,7 +20,7 @@ jobs:\n \n     steps:\n     - name: Checkout code\n-      uses: actions/checkout@v4\n+      uses: actions/checkout@v6\n \n     - name: Download fzt assets from latest release\n       env:",
+    "raw_url": "https://github.com/romaine-life/fzt-showcase/raw/22cc7832f70bd1b92d7aa95c320ce9d00eb01975/.github%2Fworkflows%2Fdeploy.yml",
+    "sha": "16175eaa67a293b9ad5d082d61abfa90e1d246cd",
+    "status": "modified"
+  }
+]

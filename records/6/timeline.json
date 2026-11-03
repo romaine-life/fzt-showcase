@@ -1,0 +1,133 @@
+[
+  {
+    "author": {
+      "date": "2026-07-12T02:34:24Z",
+      "email": "nelson@romaine.life",
+      "name": "Nelson"
+    },
+    "committer": {
+      "date": "2026-07-12T02:34:24Z",
+      "email": "nelson@romaine.life",
+      "name": "Nelson"
+    },
+    "event": "committed",
+    "html_url": "https://github.com/romaine-life/fzt-showcase/commit/3ee8243e8e41aa10f2200abeb86e89b925273ef6",
+    "message": "Merge Dependabot PRs with an app token so push workflows fire\n\nSame fix as romaine-life/my-homepage#84: merges made with the default\nGITHUB_TOKEN don't fire push workflows, so Dependabot auto-merges left\ndeploy/apply workflows untriggered. Mint an infra-bootstrap-github-app\ninstallation token (org Dependabot secret AUTOMERGE_APP_PRIVATE_KEY)\nand merge with that instead.\n\nCo-Authored-By: Claude Fable 5 \u003cnoreply@anthropic.com\u003e",
+    "node_id": "C_kwDOR4fOatoAKDNlZTgyNDNlOGU0MWFhMTBmMjIwMGFiZWI4NmU4OWI5MjUyNzNlZjY",
+    "parents": [
+      {
+        "html_url": "https://github.com/romaine-life/fzt-showcase/commit/a9836af06c2fec22112b9c76164effdf477b4a36",
+        "sha": "a9836af06c2fec22112b9c76164effdf477b4a36",
+        "url": "https://api.github.com/repos/romaine-life/fzt-showcase/git/commits/a9836af06c2fec22112b9c76164effdf477b4a36"
+      }
+    ],
+    "sha": "3ee8243e8e41aa10f2200abeb86e89b925273ef6",
+    "tree": {
+      "sha": "fc1555820effab5795058c9a39b8faf63ac1e7d6",
+      "url": "https://api.github.com/repos/romaine-life/fzt-showcase/git/trees/fc1555820effab5795058c9a39b8faf63ac1e7d6"
+    },
+    "url": "https://api.github.com/repos/romaine-life/fzt-showcase/git/commits/3ee8243e8e41aa10f2200abeb86e89b925273ef6",
+    "verification": {
+      "payload": null,
+      "reason": "unsigned",
+      "signature": null,
+      "verified": false,
+      "verified_at": null
+    }
+  },
+  {
+    "actor": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/18473267?v=4",
+      "events_url": "https://api.github.com/users/nelsong6/events{/privacy}",
+      "followers_url": "https://api.github.com/users/nelsong6/followers",
+      "following_url": "https://api.github.com/users/nelsong6/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nelsong6/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/nelsong6",
+      "id": 18473267,
+      "login": "nelsong6",
+      "node_id": "MDQ6VXNlcjE4NDczMjY3",
+      "organizations_url": "https://api.github.com/users/nelsong6/orgs",
+      "received_events_url": "https://api.github.com/users/nelsong6/received_events",
+      "repos_url": "https://api.github.com/users/nelsong6/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/nelsong6/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nelsong6/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/nelsong6",
+      "user_view_type": "public"
+    },
+    "commit_id": "a4295cee51e7b231bfcf9829cb8ac68cf9c994d1",
+    "commit_url": "https://api.github.com/repos/romaine-life/fzt-showcase/commits/a4295cee51e7b231bfcf9829cb8ac68cf9c994d1",
+    "created_at": "2026-07-12T02:38:37Z",
+    "event": "merged",
+    "id": 27865758626,
+    "node_id": "ME_lADOR4fOas8AAAABIfueN88AAAAGfO27og",
+    "performed_via_github_app": null,
+    "url": "https://api.github.com/repos/romaine-life/fzt-showcase/issues/events/27865758626"
+  },
+  {
+    "actor": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/18473267?v=4",
+      "events_url": "https://api.github.com/users/nelsong6/events{/privacy}",
+      "followers_url": "https://api.github.com/users/nelsong6/followers",
+      "following_url": "https://api.github.com/users/nelsong6/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nelsong6/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/nelsong6",
+      "id": 18473267,
+      "login": "nelsong6",
+      "node_id": "MDQ6VXNlcjE4NDczMjY3",
+      "organizations_url": "https://api.github.com/users/nelsong6/orgs",
+      "received_events_url": "https://api.github.com/users/nelsong6/received_events",
+      "repos_url": "https://api.github.com/users/nelsong6/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/nelsong6/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nelsong6/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/nelsong6",
+      "user_view_type": "public"
+    },
+    "commit_id": null,
+    "commit_url": null,
+    "created_at": "2026-07-12T02:38:37Z",
+    "event": "closed",
+    "id": 27865758642,
+    "intent": null,
+    "node_id": "CE_lADOR4fOas8AAAABIfueN88AAAAGfO27sg",
+    "performed_via_github_app": null,
+    "state_reason": null,
+    "url": "https://api.github.com/repos/romaine-life/fzt-showcase/issues/events/27865758642"
+  },
+  {
+    "actor": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/18473267?v=4",
+      "events_url": "https://api.github.com/users/nelsong6/events{/privacy}",
+      "followers_url": "https://api.github.com/users/nelsong6/followers",
+      "following_url": "https://api.github.com/users/nelsong6/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nelsong6/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/nelsong6",
+      "id": 18473267,
+      "login": "nelsong6",
+      "node_id": "MDQ6VXNlcjE4NDczMjY3",
+      "organizations_url": "https://api.github.com/users/nelsong6/orgs",
+      "received_events_url": "https://api.github.com/users/nelsong6/received_events",
+      "repos_url": "https://api.github.com/users/nelsong6/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/nelsong6/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nelsong6/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/nelsong6",
+      "user_view_type": "public"
+    },
+    "commit_id": null,
+    "commit_url": null,
+    "created_at": "2026-07-12T02:38:39Z",
+    "event": "head_ref_deleted",
+    "id": 27865758916,
+    "node_id": "HRDE_lADOR4fOas8AAAABIfueN88AAAAGfO28xA",
+    "performed_via_github_app": null,
+    "url": "https://api.github.com/repos/romaine-life/fzt-showcase/issues/events/27865758916"
+  }
+]

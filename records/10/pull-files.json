@@ -1,0 +1,26 @@
+[
+  {
+    "additions": 1,
+    "blob_url": "https://github.com/romaine-life/fzt-showcase/blob/18a38d51d010b92d2642e7d5df20cefff607ecb1/.github%2Fworkflows%2Fbuild-check.yml",
+    "changes": 2,
+    "contents_url": "https://api.github.com/repos/romaine-life/fzt-showcase/contents/.github%2Fworkflows%2Fbuild-check.yml?ref=18a38d51d010b92d2642e7d5df20cefff607ecb1",
+    "deletions": 1,
+    "filename": ".github/workflows/build-check.yml",
+    "patch": "@@ -20,7 +20,7 @@ jobs:\n       uses: actions/checkout@v7\n \n     - name: Setup Node.js\n-      uses: actions/setup-node@v6\n+      uses: actions/setup-node@v7\n       with:\n         node-version: 22\n ",
+    "raw_url": "https://github.com/romaine-life/fzt-showcase/raw/18a38d51d010b92d2642e7d5df20cefff607ecb1/.github%2Fworkflows%2Fbuild-check.yml",
+    "sha": "dc11c0865569d1b4caa2e0eb1d9e72869d225f11",
+    "status": "modified"
+  },
+  {
+    "additions": 1,
+    "blob_url": "https://github.com/romaine-life/fzt-showcase/blob/18a38d51d010b92d2642e7d5df20cefff607ecb1/.github%2Fworkflows%2Fdeploy.yml",
+    "changes": 2,
+    "contents_url": "https://api.github.com/repos/romaine-life/fzt-showcase/contents/.github%2Fworkflows%2Fdeploy.yml?ref=18a38d51d010b92d2642e7d5df20cefff607ecb1",
+    "deletions": 1,
+    "filename": ".github/workflows/deploy.yml",
+    "patch": "@@ -21,7 +21,7 @@ jobs:\n       uses: actions/checkout@v7\n \n     - name: Setup Node.js\n-      uses: actions/setup-node@v6\n+      uses: actions/setup-node@v7\n       with:\n         node-version: 22\n ",
+    "raw_url": "https://github.com/romaine-life/fzt-showcase/raw/18a38d51d010b92d2642e7d5df20cefff607ecb1/.github%2Fworkflows%2Fdeploy.yml",
+    "sha": "7235f0b6c62f7249c7ab22dbddbdd4e8bdddd27a",
+    "status": "modified"
+  }
+]

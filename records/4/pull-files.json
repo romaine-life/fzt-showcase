@@ -1,0 +1,14 @@
+[
+  {
+    "additions": 1,
+    "blob_url": "https://github.com/romaine-life/fzt-showcase/blob/171f6866ec5eca27cbef0d1a36e1f9d7b494550b/.github%2Fworkflows%2Ftofu.yml",
+    "changes": 2,
+    "contents_url": "https://api.github.com/repos/romaine-life/fzt-showcase/contents/.github%2Fworkflows%2Ftofu.yml?ref=171f6866ec5eca27cbef0d1a36e1f9d7b494550b",
+    "deletions": 1,
+    "filename": ".github/workflows/tofu.yml",
+    "patch": "@@ -20,7 +20,7 @@ permissions:\n \n jobs:\n   tofu:\n-    uses: nelsong6/pipeline-templates/.github/workflows/tofu-plan-apply-template.yml@main\n+    uses: romaine-life/pipeline-templates/.github/workflows/tofu-plan-apply-template.yml@main\n     with:\n       working_directory: tofu\n       backend_storage_account: ${{ vars.TFSTATE_STORAGE_ACCOUNT }}",
+    "raw_url": "https://github.com/romaine-life/fzt-showcase/raw/171f6866ec5eca27cbef0d1a36e1f9d7b494550b/.github%2Fworkflows%2Ftofu.yml",
+    "sha": "694e31d0e76ea23dc2bf980ae51296c62d2e6de8",
+    "status": "modified"
+  }
+]

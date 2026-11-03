@@ -1,0 +1,84 @@
+[
+  {
+    "author": {
+      "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+      "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
+      "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/apps/dependabot",
+      "id": 49699333,
+      "login": "dependabot[bot]",
+      "node_id": "MDM6Qm90NDk2OTkzMzM=",
+      "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
+      "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
+      "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
+      "type": "Bot",
+      "url": "https://api.github.com/users/dependabot%5Bbot%5D",
+      "user_view_type": "public"
+    },
+    "comments_url": "https://api.github.com/repos/romaine-life/fzt-showcase/commits/db9e18fd78086a6409b1745f83ec210690d39112/comments",
+    "commit": {
+      "author": {
+        "date": "2026-07-18T11:52:23Z",
+        "email": "49699333+dependabot[bot]@users.noreply.github.com",
+        "name": "dependabot[bot]"
+      },
+      "comment_count": 0,
+      "committer": {
+        "date": "2026-07-18T11:52:23Z",
+        "email": "noreply@github.com",
+        "name": "GitHub"
+      },
+      "message": "Bump actions/create-github-app-token from 2.2.2 to 3.2.0\n\nBumps [actions/create-github-app-token](https://github.com/actions/create-github-app-token) from 2.2.2 to 3.2.0.\n- [Release notes](https://github.com/actions/create-github-app-token/releases)\n- [Changelog](https://github.com/actions/create-github-app-token/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/create-github-app-token/compare/fee1f7d63c2ff003460e3d139729b119787bc349...bcd2ba49218906704ab6c1aa796996da409d3eb1)\n\n---\nupdated-dependencies:\n- dependency-name: actions/create-github-app-token\n  dependency-version: 3.2.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e",
+      "tree": {
+        "sha": "1d6c326f889099f6bf077f00df6081c6ddbb1de2",
+        "url": "https://api.github.com/repos/romaine-life/fzt-showcase/git/trees/1d6c326f889099f6bf077f00df6081c6ddbb1de2"
+      },
+      "url": "https://api.github.com/repos/romaine-life/fzt-showcase/git/commits/db9e18fd78086a6409b1745f83ec210690d39112",
+      "verification": {
+        "payload": "tree 1d6c326f889099f6bf077f00df6081c6ddbb1de2\nparent 553646214675a526ff576619c477dcca87b9162f\nauthor dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e 1784375543 +0000\ncommitter GitHub \u003cnoreply@github.com\u003e 1784375543 +0000\n\nBump actions/create-github-app-token from 2.2.2 to 3.2.0\n\nBumps [actions/create-github-app-token](https://github.com/actions/create-github-app-token) from 2.2.2 to 3.2.0.\n- [Release notes](https://github.com/actions/create-github-app-token/releases)\n- [Changelog](https://github.com/actions/create-github-app-token/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/create-github-app-token/compare/fee1f7d63c2ff003460e3d139729b119787bc349...bcd2ba49218906704ab6c1aa796996da409d3eb1)\n\n---\nupdated-dependencies:\n- dependency-name: actions/create-github-app-token\n  dependency-version: 3.2.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e",
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqW2j3CRC1aQ7uu5UhlAAAhkIQAFDiJOakCYwryRQ2LLh21Kke\nGsjrEE9tPIahWvxoXFRIjjZE2BYAF2Dn6YSTI9Y/RwNGYw4YSL+2x7UyOU4ngFT/\n3j2TgdwWcUP4OZSFk9/KHPuIQTY5bUkbEqGBzUyXjTguFHh/nskYrF5olas+IJNM\nL1KtR2nrv1g7DRPrtYOEF1b/eA4a6B4mHf4vdwS6BQMujqcbw/kau+kZ3CNoMfJj\nGoCyXxqW1KMQD/XmkZ9rF+6joOI24s7EWmJXt0iImyE49McZ2KFVwGCwLsVGybtD\nNYF7pTRpQ/Gzpk9xmxlJnqiYv7M5/7NwdG3zeGjdeRPWiJfA2vg9RFgysudIXeJ4\n3+i+IM08C5P/xne0yZD6i7SmRAcfqpHoCgO7UY7wLKpOVXWcBjXkgtuKK+TFtC9v\npZhFbo+aFeFuvy5eTAVp/I69kXCsXNz49XdsQBKxRmNCrz/1vOhkL8H9CEZyD8Y7\nmX3AkxrwPR/FJIPJCwMUohEolmjdbhnWmAJZsO75K/RzIK7LBgXX7QFlu96t2jE1\nk1Il4GpqLhnn/FQZwHk39IaNHK+HDq1g8oTyh6KWbsq1p4G7BHBVXqwCstRIcgiu\nOE9gOifLiat4bK3LjNsOzBN2iZYOcJRT+hSh6aU53Wf+pHUFqEqCZQGYTMWHZ5Em\n2zosQeMVPlI0TtBHzM96\n=8Y/G\n-----END PGP SIGNATURE-----\n",
+        "verified": true,
+        "verified_at": "2026-07-18T11:52:24Z"
+      }
+    },
+    "committer": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/web-flow",
+      "id": 19864447,
+      "login": "web-flow",
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/web-flow",
+      "user_view_type": "public"
+    },
+    "html_url": "https://github.com/romaine-life/fzt-showcase/commit/db9e18fd78086a6409b1745f83ec210690d39112",
+    "node_id": "C_kwDOR4fOatoAKGRiOWUxOGZkNzgwODZhNjQwOWIxNzQ1ZjgzZWMyMTA2OTBkMzkxMTI",
+    "parents": [
+      {
+        "html_url": "https://github.com/romaine-life/fzt-showcase/commit/553646214675a526ff576619c477dcca87b9162f",
+        "sha": "553646214675a526ff576619c477dcca87b9162f",
+        "url": "https://api.github.com/repos/romaine-life/fzt-showcase/commits/553646214675a526ff576619c477dcca87b9162f"
+      }
+    ],
+    "sha": "db9e18fd78086a6409b1745f83ec210690d39112",
+    "url": "https://api.github.com/repos/romaine-life/fzt-showcase/commits/db9e18fd78086a6409b1745f83ec210690d39112"
+  }
+]
