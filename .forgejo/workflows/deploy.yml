@@ -47,6 +47,7 @@ jobs:
         working-directory: frontend
         run: npm run build
       - name: Install Azure CLI
+        if: github.event_name != 'pull_request'
         run: |
           set -euo pipefail
           if ! command -v az >/dev/null 2>&1; then
@@ -54,6 +55,7 @@ jobs:
           fi
           az version
       - name: Azure Login via Forgejo OIDC
+        if: github.event_name != 'pull_request'
         uses: https://github.com/azure/login@v2
         with:
           client-id: ${{ vars.ARM_CLIENT_ID }}
@@ -94,8 +96,10 @@ jobs:
         run: |
           set -euo pipefail
           sha=$(git rev-parse --short=7 HEAD)
+          # Home DNS can cache a deleted SWA hostname for its one-hour TTL.
+          # Verify the public hostname through fresh public DNS with normal TLS checks.
           for i in $(seq 1 60); do
-            if curl -fsS "https://fzt.romaine.life/version.json?commit=$sha" | jq -e --arg v "$VERSION" --arg sha "$sha" '.fztBrowser==$v and .sha==$sha'; then exit 0; fi
+            if curl --doh-url https://cloudflare-dns.com/dns-query --connect-timeout 10 --max-time 20 -fsS "https://fzt.romaine.life/version.json?commit=$sha" | jq -e --arg v "$VERSION" --arg sha "$sha" '.fztBrowser==$v and .sha==$sha'; then exit 0; fi
             sleep 5
           done
           echo 'Deployed version did not become live'; exit 1
