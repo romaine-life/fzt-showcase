@@ -37,3 +37,18 @@ Both consume fzt-browser's WASM binary and JS/CSS assets. The showcase is a stan
 ## Deployment
 
 Azure Static Web App via Forgejo Actions. CI downloads the latest `fzt-browser` assets, runs `npm run build` in `frontend/`, then deploys `frontend/dist/`.
+
+To deploy main and publish the next `v0.1.*` Forgejo release with
+`fzt-showcase.zip`, use the existing Forgejo credential from Git:
+
+```powershell
+$credential = (("protocol=https`nhost=forgejo.romaine.life`n`n" | git credential fill) -join "`n") | ConvertFrom-StringData
+try {
+    Invoke-RestMethod -Method Post -Uri 'https://forgejo.romaine.life/api/v1/repos/romaine-life/fzt-showcase/actions/workflows/deploy.yml/dispatches' -Headers @{ Authorization = "token $($credential.password)" } -ContentType 'application/json' -Body '{"ref":"main","inputs":{"release":"true"}}'
+} finally { Remove-Variable credential }
+```
+
+Forgejo's dispatch API accepts input values as strings. The `release` workflow
+input is boolean; `"true"` enables publication after deployment verification.
+The deployment waits for the existing Azure resource group, app and deployment
+token to become available when infrastructure provisioning is still running.
